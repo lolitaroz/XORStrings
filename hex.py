@@ -27,7 +27,10 @@ def human(text, key):
     return ans
 
 def numOut(text, key):
-    return 1
+    ans = ""
+    for i in range(len(text)):
+        ans = ans + hex(ord(text[i]) ^ ord(key[i]))[2:] + " "
+    return ans
 
 if (len(key) < len(inp)):
     key = loopKey(inp, key)
