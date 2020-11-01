@@ -8,8 +8,30 @@ inp = open(inpfile).read()[:-1] #removes the mandatory \n at the end of the file
 debug = False
 
 if(debug):
-    print("mode:"+mode)
+    print("mode: "+mode)
     print("key: "+key)
     print("inp: "+inp)
 
-#YOUR CODE HERE
+def loopKey(text, key):
+    fullKey = ""
+    x = 0
+    while x != len(text):
+        fullKey = fullKey + key[x % len(key)]
+        x = x + 1
+    return fullKey
+
+def human(text, key):
+    ans = ""
+    for i in range(len(text)):
+        ans = ans + chr(ord(text[i]) ^ ord(key[i]))
+    return ans
+
+def numOut(text, key):
+    return 1
+
+if (len(key) < len(inp)):
+    key = loopKey(inp, key)
+if (mode == "human"):
+    print(human(inp, key))
+else:
+    print(numOut(inp, key))
